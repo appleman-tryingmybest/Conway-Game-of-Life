@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://br2ogx7th13vl"]
 
+[ext_resource type="Script" uid="uid://c2587fj53rrmq" path="res://Global.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://doqu2kk6y4l1e" path="res://grid_container.tscn" id="1_ig7tw"]
 
 [node name="main" type="Node2D" unique_id=1157031587]
+script = ExtResource("1_0xm2m")
+timer_cooldown = 0.8
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1246913222]
 
