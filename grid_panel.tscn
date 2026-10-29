@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://bnvabewikr2lr"]
+
+[ext_resource type="Script" uid="uid://b2o3ig6i01do" path="res://grid_panel.gd" id="1_qpjan"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ojnr2"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_emoma"]
+size = Vector2(55, 56)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5le0k"]
+size = Vector2(110, 112)
+
+[node name="PanelContainer" type="PanelContainer" unique_id=781534377]
+custom_minimum_size = Vector2(32, 32)
+offset_right = 32.0
+offset_bottom = 32.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ojnr2")
+script = ExtResource("1_qpjan")
+
+[node name="Label" type="Label" parent="." unique_id=487215786]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 9
+text = "H"
+clip_text = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=944194773]
+z_index = -1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=914189964]
+shape = SubResource("RectangleShape2D_emoma")
+debug_color = Color(1, 1, 1, 0)
+
+[node name="Area2D" type="Area2D" parent="StaticBody2D" unique_id=876226273]
+z_index = -2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/Area2D" unique_id=986797907]
+shape = SubResource("RectangleShape2D_5le0k")
+debug_color = Color(1, 0, 0, 0)
