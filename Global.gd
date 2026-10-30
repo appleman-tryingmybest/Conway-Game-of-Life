@@ -2,14 +2,15 @@ extends Node2D
 
 @export var timer_cooldown : float
 
+
 var global_timer = 1
 
 signal ticked(update: int)
 @onready var timer := Timer.new()
 
 func _ready() -> void:
-	add_child(timer)
-	timer.wait_time = 0.5
+	add_child(timer)s
+	timer.wait_time = 0.7
 	timer.timeout.connect(_timeout)
 	timer.start()
 

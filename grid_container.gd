@@ -21,6 +21,8 @@ extends GridContainer
 		cell_height = value
 		_rebuild()
 
+@export var birth : Array = [3]
+@export var survive : Array = [2, 3]
 
 var grid_cell = preload("res://grid_panel.tscn")
 var col_shape = preload("res://grid_panel.tscn::RectangleShape2D_emoma")
@@ -50,7 +52,7 @@ func _do_rebuild() -> void:
 
 func _create_grid() -> void:
 	col_shape.size = Vector2(cell_width, cell_height)
-	det_shape.size = Vector2(cell_width * 2, cell_height * 2)
+	det_shape.size = Vector2(cell_width * 1.5, cell_height * 1.5)
 	columns = width
 	for i in width * height:
 		var grid_cell_node = grid_cell.instantiate()

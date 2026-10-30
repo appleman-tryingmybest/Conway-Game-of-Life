@@ -9,11 +9,10 @@ extends PanelContainer
 	set(value):
 		cell_width = value
 
-@export var birth : Array = [2, 3]
-@export var survive : Array = [3]
+
 @export var random_chance = 2
 
-var amount = 0
+
 
 @onready var stylebox = get_theme_stylebox("panel")
 @onready var label = $Label
@@ -30,33 +29,37 @@ func _ready():
 	col.position = Vector2(cell_width/2, cell_height/2)
 	detection_area.position = col.position
 	Global.ticked.connect(_check)
-	if randi_range(0, random_chance) == 0:
+	if randi_range(0, random_chance) == random_chance:
 		state.state = 1
 
 
 func _check():
+	var amount = 0
 	for i in monitor.get_overlapping_bodies():
 		if i.state == 1 and i != state:
 			amount += 1
 	label.text = "Amt: " + str(amount)
-	_checknextstate()
+	var next_state = _checknextstate(amount)
 	await get_tree().physics_frame
 	await get_tree().physics_frame
 	#print("yo we got these dudes for: ", amount)
-	amount = 0
+	state.state = next_state
 	_match_state()
 
-func _checknextstate():
-	for i in birth:
-		if amount == i and state.state == 0:
-			state.state = 1
-		elif amount == i and state.state == 1:
-			return
-	for i in survive:
-		if amount == i:
-			return
-		elif amount != i:
-			state.state = 0
+func _checknextstate(amount: int):
+	var rule = get_parent()
+	var cur_state = state.state
+	if cur_state == 0: #dead
+		if amount in rule.birth:
+			cur_state = 1
+		else:
+			cur_state = 0
+	else: #alive
+		if amount in rule.survive:
+			cur_state = 1
+		else:
+			cur_state = 0
+	return cur_state
 
 func _match_state():
 	match state.state:
