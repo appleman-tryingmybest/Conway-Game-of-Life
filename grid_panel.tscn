@@ -23,7 +23,7 @@ offset_right = 32.0
 offset_bottom = 32.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_ojnr2")
 script = ExtResource("1_qpjan")
-colors = null
+random_chance = 1
 
 [node name="Area2D" type="Area2D" parent="." unique_id=876226273]
 z_index = -2

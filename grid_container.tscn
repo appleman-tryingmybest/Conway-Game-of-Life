@@ -12,3 +12,5 @@ width = 29
 height = 16
 cell_width = 55
 cell_height = 56
+birth = [3, 6, 8]
+survive = [1, 2, 5, 7, 8]

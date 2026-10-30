@@ -10,9 +10,11 @@ timer_cooldown = 0.1
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1246913222]
 
 [node name="GridContainer" parent="." unique_id=2127200318 instance=ExtResource("1_ig7tw")]
-offset_left = -850.0
-offset_top = -480.0
-offset_right = 866.0
-offset_bottom = 476.0
+offset_left = -914.0
+offset_top = -478.0
+offset_right = 911.0
+offset_bottom = 478.0
+columns = 31
+width = 31
 
 [node name="Timer" type="Timer" parent="." unique_id=948811719]
