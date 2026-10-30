@@ -1,3 +1,4 @@
+@tool
 extends GridContainer
 
 @export var width = 0:

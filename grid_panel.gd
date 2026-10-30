@@ -10,7 +10,8 @@ extends PanelContainer
 		cell_width = value
 
 @export var birth : Array = [2, 3]
-@export var Survive : Array = [3]
+@export var survive : Array = [3]
+@export var random_chance = 2
 
 var amount = 0
 
@@ -29,25 +30,42 @@ func _ready():
 	col.position = Vector2(cell_width/2, cell_height/2)
 	detection_area.position = col.position
 	Global.ticked.connect(_check)
+	if randi_range(0, random_chance) == 0:
+		state.state = 1
 
 
 func _check():
-	_match_state()
 	for i in monitor.get_overlapping_bodies():
 		if i.state == 1 and i != state:
 			amount += 1
 	label.text = "Amt: " + str(amount)
+	_checknextstate()
+	await get_tree().physics_frame
+	await get_tree().physics_frame
 	#print("yo we got these dudes for: ", amount)
 	amount = 0
+	_match_state()
+
+func _checknextstate():
+	for i in birth:
+		if amount == i and state.state == 0:
+			state.state = 1
+		elif amount == i and state.state == 1:
+			return
+	for i in survive:
+		if amount == i:
+			return
+		elif amount != i:
+			state.state = 0
 
 func _match_state():
 	match state.state:
 		0: self_modulate = Color(0, 0, 0)
 		1: self_modulate = Color(1, 1, 1)
 
-
 func _on_button_pressed() -> void:
 	if state.state == 0:
 		state.state = 1
 	else:
 		state.state == 0
+	_match_state()
