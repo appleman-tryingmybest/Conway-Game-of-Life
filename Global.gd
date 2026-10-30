@@ -9,8 +9,8 @@ signal ticked(update: int)
 @onready var timer := Timer.new()
 
 func _ready() -> void:
-	add_child(timer)s
-	timer.wait_time = 0.7
+	add_child(timer)
+	timer.wait_time = 0.2
 	timer.timeout.connect(_timeout)
 	timer.start()
 

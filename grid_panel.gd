@@ -29,8 +29,9 @@ func _ready():
 	col.position = Vector2(cell_width/2, cell_height/2)
 	detection_area.position = col.position
 	Global.ticked.connect(_check)
-	if randi_range(0, random_chance) == random_chance:
-		state.state = 1
+	_match_state()
+	#if randi_range(0, random_chance) == random_chance:
+		#state.state = 1
 
 
 func _check():
@@ -38,6 +39,8 @@ func _check():
 	for i in monitor.get_overlapping_bodies():
 		if i.state == 1 and i != state:
 			amount += 1
+	if amount == 0:
+		return
 	label.text = "Amt: " + str(amount)
 	var next_state = _checknextstate(amount)
 	await get_tree().physics_frame
